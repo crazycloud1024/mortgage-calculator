@@ -25,7 +25,7 @@ pip install -r requirement.txt
 python run main
 ```
 
-Then open your browser at http://localhost:8000
+Then open your browser at http://localhost:8000/api/docs    or  http://localhost:8000/api/redoc
 
 
 
