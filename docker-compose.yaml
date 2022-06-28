@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  rongshanalert:
+    build: ./backend
+    container_name: lpr-server
+    restart: always
+    ports:
+    - "8000:8000"
+    volumes:
+    - /vol1/home/ops_workdir/rongshanalert/backend/app:/app/app
+  ops-web:
+    build: ./fronted
+    container_name: lpr-web
+    restart: always
+    ports:
+    - "8001:80"
+    volumes:
+    - /vol1/home/ops_workdir/rongshanalert/fronted/dist:/usr/share/nginx/html
