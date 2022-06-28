@@ -63,7 +63,7 @@ def equal_principal_tools(money:float, monthlpr:float, loan_month:int) -> list:
     # i 月份
     for i in range(1, 12 * loan_month):
         # 每月还款额
-        month_pay1 = rande45(money / (loan_month) + (money - all_month_pay) * monthlpr)
+        month_pay1 = rande45(money / loan_month + (money - all_month_pay) * monthlpr)
         # 已还款总额
         all_month_pay = rande45(all_month_pay + month_pay1)
         # 已还款本金
