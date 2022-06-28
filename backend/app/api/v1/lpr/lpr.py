@@ -2,6 +2,8 @@ import simplejson
 from fastapi import APIRouter, Request
 from app.extensions.logger import logger
 from app.api.v1.lpr.tools import equal_principal_interest_tool
+from app.api.v1.lpr.tools import equal_principal_tools
+
 
 router = APIRouter()
 
@@ -15,7 +17,7 @@ async def equal_principal_interest(request: Request):
 
     # loan_money, month_lpr, number_loan_month
     loan_money = 1000000
-    number_loan_year = 10
+    number_loan_year = 30
     number_loan_month = 12 * number_loan_year
     print(data.get("lpr_year_value", 0))
     year_lpr = int(float(data.get("lpr_year_value", 0)))
@@ -31,5 +33,26 @@ async def equal_principal_interest(request: Request):
 
 @router.post("/lrp/equal_principal")
 async def equal_principal(request: Request):
-    pass
+    data = await request.body()
+    data = data.decode('UTF-8')
+    logger.info(simplejson.loads(data))
+    data = simplejson.loads(data)
+
+    loan_money = 1000000
+    number_loan_year = 30
+    number_loan_month = 12 * number_loan_year
+    print(data.get("lpr_year_value", 0))
+    year_lpr = int(float(data.get("lpr_year_value", 0)))
+    month_lpr = year_lpr / 100 / 12
+    ret = equal_principal_tools(loan_money, month_lpr, number_loan_month)
+    logger.info(ret)
+    logger.info(type(ret))
+    res = simplejson.dumps(ret)
+    logger.info(res)
+    logger.info(type(res))
+    logger.info(month_lpr)
+    logger.info(number_loan_month)
+    logger.info(loan_money)
+    return ret
+
     #TODO miss li
