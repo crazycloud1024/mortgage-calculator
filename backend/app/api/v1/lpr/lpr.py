@@ -31,7 +31,5 @@ async def equal_principal_interest(request: Request):
 
 @router.post("/lrp/equal_principal")
 async def equal_principal(request: Request):
-    data = await request.form()
-    if data:
-        logger.info(data)
-        return {}
+    pass
+    #TODO miss li
